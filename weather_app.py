@@ -11,12 +11,9 @@ st.set_page_config(page_title="🌧️ Weather Prediction", layout="centered")
 @st.cache_data
 def load_data():
     try:
-        df = pd.read_csv('weather.csv')
-        df = df.sample(5000, random_state=42)  
-        df = df.dropna()  
-        return df
-    except FileNotFoundError:
-        st.error("Error: 'weather.csv' file not found. Please download it from Kaggle.")
+        return pd.read_csv('weather_light.csv').dropna()
+    except:
+        st.error("Data load failed")
         st.stop()
 
 df = load_data()
